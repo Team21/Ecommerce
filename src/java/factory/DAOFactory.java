@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package factory;
+
+import dao.*;
 
 /**
  *
  * @author Ahmad Moawad <ahmadmoawad3@gmail.com>
  */
-public class Admin {
-    
-    
+public abstract class DAOFactory {
+
+    public static final int MYSQL = 0;
+
+    public static DAOFactory getDAOFactory(int type) {
+        return new MysqlFactory();
+    }
 }
