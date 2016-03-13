@@ -58,6 +58,26 @@
                     <file>${libs.MySQLDriver.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+                <library dirs="200">
+                    <file>${file.reference.bonecp-0.7.1.RELEASE.jar-2}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.guava-16.0.1.jar-2}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.slf4j-api-1.7.18.jar-2}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.slf4j-jdk14-1.7.18.jar-2}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.gson-2.2.2.jar-1}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
