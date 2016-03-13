@@ -9,6 +9,7 @@ import interfaces.DAOInter;
 import java.util.Collection;
 import java.util.Date;
 import javax.sql.RowSet;
+import pojo.User;
 
 /**
  *

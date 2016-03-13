@@ -25,6 +25,17 @@ public class User {
     private String imageUrl;
     private int permissionId;
 
+    public User() {
+    }
+
+    public User(String userEmail, String userPassword) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public User(User newUser, String userPassword) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId() {
         return id;
     }
