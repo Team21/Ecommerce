@@ -13,9 +13,10 @@ public class Product {
     private int  id;
     private String name;
     private int  quantity;
-    private String imageUrl;
+    private byte[] image;
     private int  price;
     private int  categoryId;
+    private String description;
 
     public int getId() {
         return id;
@@ -41,14 +42,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -63,6 +56,22 @@ public class Product {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

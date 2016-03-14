@@ -22,9 +22,10 @@ public class User {
     private int paypal;
     private String address;
     private String phone;
-    private String imageUrl;
+    private byte[] image;
     private int permissionId;
-
+    private int activated;
+    
     public User() {
     }
 
@@ -116,20 +117,28 @@ public class User {
         this.phone = phone;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public int getPermissionId() {
         return permissionId;
     }
 
     public void setPermissionId(int permissionId) {
         this.permissionId = permissionId;
+    }
+
+    public int getActivated() {
+        return activated;
+    }
+
+    public void setActivated(int activated) {
+        this.activated = activated;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
   

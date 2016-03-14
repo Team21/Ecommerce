@@ -13,7 +13,7 @@ public class Category {
 
     private int id;
     private String name;
-    private String imageUrl;
+    private byte[] image;
 
     public int getId() {
         return id;
@@ -31,12 +31,12 @@ public class Category {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
-    
+
 }
