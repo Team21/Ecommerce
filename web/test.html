@@ -12,7 +12,67 @@ and open the template in the editor.
         <script type="text/javascript" src="themes/js/jquery-1.12.0.min.js"></script>
 
         <script type="text/javascript" >
+            $(document).ready(function () {
+                // window.alert('hiii');
+                var p1 =0;
+               
 
+                $("#1").click(function () {
+                    // $this will contain a reference to the checkbox   
+                    if (this.checked) {
+                        // the checkbox was checked 
+                       // window.alert('checked');
+                        p1++;
+
+                    } else {
+                        // the checkbox was unchecked
+                       // window.alert('un checked');
+                        p1--;
+                    }
+
+                });
+                 $("#2").click(function () {
+                    // $this will contain a reference to the checkbox   
+                    if (this.checked) {
+                        // the checkbox was checked 
+                      //  window.alert('checked');
+                        p1++;
+
+                    } else {
+                        // the checkbox was unchecked
+                        //window.alert('un checked');
+                        p1--;
+                    }
+
+                });
+                 $("#3").click(function () {
+                    // $this will contain a reference to the checkbox   
+                    if (this.checked) {
+                        // the checkbox was checked 
+                        //window.alert('checked');
+                        p1++;
+
+                    } else {
+                        // the checkbox was unchecked
+                       // window.alert('un checked');
+                        p1--;
+                    }
+
+                });
+
+
+                $("#btnCart").click(function () {
+                    // window.alert('hiii bbutton');
+
+                    // var p1 = $("#1").val();
+                    window.alert(p1);
+                    $("#CartError").html(p1);
+
+                });
+
+
+
+            });
 
 
 
@@ -31,13 +91,13 @@ and open the template in the editor.
                 product 3<input type="checkbox" value="3" id="3" /> 
 
             </div>
-
+          
             <br>
             <br>
             <div>
 
                 <input type="button" id="btnCart" value="Add to Cart"/>
-                <span style="color: #bc271c;"
+                <span >[ <b style="color: #bc271c;" id="CartError" >0</b> ] products in your Cart</span>
             </div>
 
         </form>

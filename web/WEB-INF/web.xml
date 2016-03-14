@@ -5,11 +5,11 @@
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
     <welcome-file-list>
-        <welcome-file>/search.html </welcome-file>
+        <welcome-file>/index.html </welcome-file>
     </welcome-file-list>
     <session-config>
         <session-timeout>
-            30
+            100
         </session-timeout>
     </session-config>
 </web-app>

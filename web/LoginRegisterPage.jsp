@@ -51,13 +51,7 @@ and open the template in the editor.
             </tr>
         </table>
 
-        <footer>
-            <div id="footer">
-                <p>W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly 
-                    reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. 
-                    Copyright 1999-2016 by Ref Data. All Rights Reserved.</p>
-            </div>
-        </footer>
+        
 
         <script type = "text/javascript" language = "javascript">
             $("#login").click(function () {
@@ -71,9 +65,11 @@ and open the template in the editor.
                             "email": email, "password": password
                         },
                         success: function (data, textStatus, jqXHR) {
-                            $('#messageDiv').html("<font color='green'>You are successfully logged in. </font>");
-                            $('#messageDiv').css("display", "block");
-                        window.location.href = "https://www.google.com/?gfe_rd=cr&ei=ti5OVpSTJ8bm-gbd8KWACA&gws_rd=cr&fg=1";
+                            window.alert('done');
+                            window.alert(data);
+//                            $('#messageDiv').html("<font color='green'>You are successfully logged in. </font>");
+//                            $('#messageDiv').css("display", "block");
+//                        window.location.href = "https://www.google.com/?gfe_rd=cr&ei=ti5OVpSTJ8bm-gbd8KWACA&gws_rd=cr&fg=1";
                         }
                     });
                 } else {
