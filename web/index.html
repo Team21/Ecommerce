@@ -122,13 +122,13 @@
 
                                     </div>
                                     <div class="modal-body" id="logindiv" >
-                                        <form class="form-horizontal loginFrm" method="post" id="formlogin">
+                                        <form action="SignInServletController" class="form-horizontal loginFrm" method="post" id="formlogin">
                                             <div class="control-group">								
-                                                <input type="text" id="inputEmail" placeholder="Email" required>
+                                                <input type="text" id="inputEmail" placeholder="Email" name="email" required>
                                                 <b id="emailError" style="color: #C00;"> </b>
                                             </div>
                                             <div class="control-group">
-                                                <input type="password" id="inputPassword" placeholder="Password" required >
+                                                <input type="password" id="inputPassword" placeholder="Password" name="password" required >
                                                 <b id="passwordError" style="color: #C00;"> </b>
                                             </div>
                                             <div class="control-group">
@@ -136,8 +136,9 @@
                                                     <input type="checkbox"><b style="color:#FFF"> Remember me</b>
                                                 </label>
                                             </div>
+                                            <button type="submit" id="btnLogin" class="btn btn-success">Sign in</button>
                                         </form>		
-                                        <button type="button" id="btnLogin" class="btn btn-success">Sign in</button>
+                                        
                                         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 
                                     </div>

@@ -28,7 +28,8 @@ public class SignInServletController extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.setContentType("application/JSON");
+        //response.setContentType("application/JSON");
+         response.setContentType("text/html");
         System.err.println("in post");
         PrintWriter out = response.getWriter();
 
@@ -37,15 +38,15 @@ public class SignInServletController extends HttpServlet {
         userEmail = request.getParameter("email");
         userPassword = request.getParameter("password");
         System.out.println("Email :"+userEmail + "\n password : " + userPassword);
-        response.sendRedirect("index.html");
+        //out.println("askldjhas");
+       // response.sendRedirect("index.html");
         
         //out.println(userEmail + "  " + userPassword);
 
-//        registerdUser = (User) userDao.findObject(new User(userEmail, userPassword));
-//        if(registerdUser!=null){
-//                System.out.println(registerdUser.getEmail()+registerdUser.getAddress()+registerdUser.getPassword());
-////                response.getWriter().write("Welcome.html");
-////                response.sendRedirect("Welcome.html");
-//        }
+        registerdUser = (User) userDao.findObject(new User(userEmail, userPassword));
+        if(registerdUser!=null){
+                System.out.println(registerdUser.getEmail()+registerdUser.getAddress()+registerdUser.getPassword());
+                response.sendRedirect("Welcome.jsp");
+        }
     }
 }
