@@ -9,9 +9,36 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Admin</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min."/>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'>
+            
+        </script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="well">
+            <form method="post" action="login">
+                <table class='table table-border table-striped'>
+                    <tr>
+                        <td>
+                            <input type="text" name="username" placeholder="enter your username"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="password" name="passwd" placeholder="enter your password"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="login" class='btn btn-primary'/>
+                            <input type='reset' value="clear"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </body>
 </html>

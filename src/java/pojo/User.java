@@ -5,6 +5,7 @@
  */
 package pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,17 +13,19 @@ import java.util.Date;
  * @author Hossam
  */
 public class User {
+
     private int id;
     private String email;
     private String fName;
     private String lName;
     private String userName;
     private String password;
-    private Date birthdate;     
+    private Date birthdate;
     private int paypal;
     private String address;
     private String phone;
     private String imageUrl;
+    private ArrayList<Integer> pageIdList = new ArrayList<>();
     private int permissionId;
 
     public User() {
@@ -124,13 +127,20 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
-    public int getPermissionId() {
-        return permissionId;
+    public void addPermissionId(int permissionId) {
+        this.pageIdList.add(permissionId);
+    }
+
+    public ArrayList<Integer> getPageIdList() {
+        return pageIdList;
     }
 
     public void setPermissionId(int permissionId) {
         this.permissionId = permissionId;
     }
 
-  
+    public int getPermissionId() {
+        return permissionId;
+    }
+
 }

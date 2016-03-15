@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	 version="3.1">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
     <welcome-file-list>
         <welcome-file>/search.html </welcome-file>
     </welcome-file-list>
@@ -12,4 +12,20 @@
             30
         </session-timeout>
     </session-config>
+    <servlet>
+        <servlet-name>adminLogin</servlet-name>
+        <servlet-class>controller.AdminLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminLogin</servlet-name>
+        <url-pattern>/adm/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>adminHome</servlet-name>
+        <servlet-class>controller.AdminHome</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminHome</servlet-name>
+        <url-pattern>/adm/home</url-pattern>
+    </servlet-mapping>
 </web-app>

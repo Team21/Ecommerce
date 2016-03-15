@@ -5,17 +5,27 @@
  */
 package dao;
 
+import database.DBConnectionHandler;
+import factory.DAOFactory;
+import factory.MysqlFactory;
 import interfaces.DAOInter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.RowSet;
+import pojo.Admin;
 import pojo.User;
 
 /**
  *
  * @author Hossam
  */
-public class UserDAO implements DAOInter{
+public class UserDAO implements DAOInter {
 
     @Override
     public int insertObject(Object admin) {
@@ -29,7 +39,8 @@ public class UserDAO implements DAOInter{
 
     @Override
     public Object findObject(Object admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("foo");
+
     }
 
     @Override
@@ -46,5 +57,5 @@ public class UserDAO implements DAOInter{
     public Collection selectObjectsTO(Object admin) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-   
+
 }
