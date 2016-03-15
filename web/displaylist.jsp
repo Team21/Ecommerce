@@ -19,18 +19,61 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Display Products</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script type = "text/javascript" language = "javascript">
+            var allData;
+            
+            $(document).ready(function () {
+                $("#displayProBtn").click(function () {
+                    var jsonObject = {};
+                    $.ajax({
+                        url: 'DisplayProducts',
+                        type: 'get',
+                        contentType: 'application/json',
+                        data: jsonObject,
+                        dataType: 'json',
+                        success: function (data) {
+                            allData = data;
+                            for (var i = 0; i < data.length; i++) {
+                                $("#prodView").append("<tr><td>  " + data[i].name + "</td><td> " + data[i].price + "</td><td> " + data[i].quantity + "</td><td><button id=" + i + " onclick='addingProduct(" + i + ")'>Add</button></td></tr>");
+                            }
+                        }
+                    });
+                });
+            });
+            
+            function addingProduct(id) {
+                var product = allData[id];
+                alert(product.id);
+                var jsonObject = {"productId":product.id};
+                $.ajax({
+                        url: 'RequestReciever',
+                        type: 'get',
+                        contentType: 'application/json',
+                        data: jsonObject,
+                        dataType: 'json',
+                        success: function (data) {
+                        }
+                    });
+            }
+        </script>
     </head>
     <body>
-        <%!
-            MysqlFactory obj = (MysqlFactory) DAOFactory.getDAOFactory(0);
-            ArrayList<Product> products = (ArrayList<Product>) obj.getProduct().selectObjectsTO(new Product());
-        %>
-        <%=products.get(1).getName()%>
-        <c:forEach items="${products}" var="p">
-            <c:out value="${p.name}" />
-            <c:out value="${p.id}" />
-        </c:forEach>
-
-    </body>
+    <center>
+        <div id="divOfBtn">
+            <h3>Show All Products</h3>
+            <button id="displayProBtn">Execute Query</button>
+        </div>
+        <div id="divOfProduct">
+            <table id="prodView">
+                <tr>
+                    <th> Name</th>
+                    <th> Price</th>
+                    <th> Disc</th>
+                </tr>
+            </table>
+        </div>
+    </center>
+</body>
 </html>

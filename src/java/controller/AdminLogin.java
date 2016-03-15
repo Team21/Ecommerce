@@ -36,6 +36,7 @@ public class AdminLogin extends HttpServlet {
         admin = (Admin) adminDAO.findObject(admin);
         if (admin != null) {
             SessionFactory.setSession(req, SessionFactory.ADMIN, admin);
+            Admin a = SessionFactory.getSession(req, SessionFactory.ADMIN);
             resp.sendRedirect("../adm/home.jsp");
         }
         
