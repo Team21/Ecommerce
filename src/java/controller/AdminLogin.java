@@ -34,10 +34,9 @@ public class AdminLogin extends HttpServlet {
         MysqlFactory factory = (MysqlFactory) DAOFactory.getDAOFactory(DAOFactory.MYSQL);
         AdminDAO adminDAO = factory.getAdmin();
         admin = (Admin) adminDAO.findObject(admin);
-        resp.getWriter().println("trace");
         if (admin != null) {
             SessionFactory.setSession(req, SessionFactory.ADMIN, admin);
-            resp.sendRedirect(Pages.ADMIN_HOME);
+            resp.sendRedirect("../adm/home.jsp");
         }
         
     }

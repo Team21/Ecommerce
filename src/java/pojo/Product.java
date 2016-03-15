@@ -10,13 +10,26 @@ package pojo;
  * @author Hossam
  */
 public class Product {
-    private int  id;
+
+    private int id;
     private String name;
-    private int  quantity;
+    private int quantity;
     private byte[] image;
-    private int  price;
-    private int  categoryId;
+    private int price;
+    private int categoryId;
     private String description;
+    private String imageURL;
+
+    public Product() {
+    }
+
+    public Product(String name, int quantity, String imageUrl, int categoryId, int price) {
+        this.name = name;
+        this.quantity = quantity;
+        this.imageURL = imageUrl;
+        this.categoryId = categoryId;
+        this.price = price;
+    }
 
     public int getId() {
         return id;
@@ -72,6 +85,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageURL() {
+        return this.imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
 }

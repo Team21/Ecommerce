@@ -16,32 +16,32 @@ import javax.sql.RowSet;
 public class InterestsDAO implements DAOInter{
 
     @Override
-    public int insertObject(Object admin) {
+    public int insertObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteObject(Object admin) {
+    public boolean deleteObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object findObject(Object admin) {
+    public Object findObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateObject(Object admin) {
+    public boolean updateObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public RowSet selectObjectsRS(Object admin) {
+    public RowSet selectObjectsRS(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Collection selectObjectsTO(Object admin) {
+    public Collection selectObjectsTO(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    

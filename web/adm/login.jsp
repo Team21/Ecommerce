@@ -10,10 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min."/>
-        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'>
-            
-        </script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+        
     </head>
     <body>
         <div class="well">
@@ -34,7 +33,7 @@
                     <tr>
                         <td>
                             <input type="submit" value="login" class='btn btn-primary'/>
-                            <input type='reset' value="clear"/>
+                            <input type='reset' value="clear" class="btn btn-danger"/>
                         </td>
                     </tr>
                 </table>

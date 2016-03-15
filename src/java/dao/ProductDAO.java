@@ -147,7 +147,7 @@ public class ProductDAO implements DAOInter {
     }
 
     @Override
-    public RowSet selectObjectsRS(Object admin) {
+    public RowSet selectObjectsRS(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

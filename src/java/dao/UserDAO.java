@@ -50,7 +50,7 @@ public class UserDAO implements DAOInter {
             ps.setString(6, u.getPhone());
             ps.setInt(7, u.getPaypal());
             ps.setString(8, u.getAddress());
-            ps.setInt(9, u.getPermissionId()); // permission (user = 1) (admin = 2)
+            ps.setInt(9, u.getPermissionId()); // permission (user = 1) (obj = 2)
             ps.setInt(10, 1); // activated
             //ps.setDate(11, user.getBirthdate()); // error convet util.Date to sql.Date
             //ps.setBytes(12, u.getImage());
@@ -62,27 +62,27 @@ public class UserDAO implements DAOInter {
     }
 
     @Override
-    public boolean deleteObject(Object admin) {
+    public boolean deleteObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object findObject(Object admin) {
+    public Object findObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateObject(Object admin) {
+    public boolean updateObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public RowSet selectObjectsRS(Object admin) {
+    public RowSet selectObjectsRS(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Collection selectObjectsTO(Object admin) {
+    public Collection selectObjectsTO(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

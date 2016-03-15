@@ -5,6 +5,8 @@
  */
 package pojo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Hossam
@@ -14,6 +16,7 @@ public class Category {
     private int id;
     private String name;
     private byte[] image;
+    private ArrayList<Product> products;
 
     public int getId() {
         return id;
@@ -37,6 +40,14 @@ public class Category {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
 }

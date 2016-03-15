@@ -50,7 +50,7 @@ public class PageDAO implements DAOInter{
     }
 
     @Override
-    public boolean deleteObject(Object admin) {
+    public boolean deleteObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -80,17 +80,17 @@ public class PageDAO implements DAOInter{
     }
 
     @Override
-    public boolean updateObject(Object admin) {
+    public boolean updateObject(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public RowSet selectObjectsRS(Object admin) {
+    public RowSet selectObjectsRS(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Collection selectObjectsTO(Object admin) {
+    public Collection selectObjectsTO(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    

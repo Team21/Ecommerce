@@ -11,7 +11,7 @@ package factory;
  */
 public class Pages {
 
-    public static final String ADMIN_LOGIN = "/adm/login";
-    public static final String ADMIN_HOME = "/adm/home.jsp";
+    public static final String ADMIN_LOGIN = "/login.jsp";
+    public static final String ADMIN_HOME = "/home.jsp";
 
 }

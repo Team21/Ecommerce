@@ -25,7 +25,7 @@ public class AdminDAO extends UserDAO {
         try {
             //open connection
             Connection connection = MysqlFactory.getConnection();
-            String query = "SELECT * FROM user u, permission p WHERE username=? AND password=? AND u.permission_id=p.id LIMIT 1";//select user and check if 
+            String query = "SELECT * FROM users u, permission p WHERE username=? AND password=? AND u.permission_id=p.id LIMIT 1";//select user and check if 
             //prepared statement
             PreparedStatement pstmt = connection.prepareStatement(query);
             Admin a = (Admin) admin;
@@ -42,7 +42,7 @@ public class AdminDAO extends UserDAO {
                 int permissionId = result.getInt("permission_id");
                 a = new Admin(username, password, email, fname, lname, imageURL, permissionId);
             }
-            query = "SELECT p.id FROM page_permission pp, Page p WHERE pp.permission_id=? AND pp.page_id=p.id";//select page 
+            query = "SELECT p.id FROM page_permission pp, page p WHERE pp.permission_id=? AND pp.page_id=p.id";//select page 
             pstmt = connection.prepareStatement(query);
             pstmt.setInt(1, a.getPermissionId());
             result = pstmt.executeQuery();

@@ -9,16 +9,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Page</title>
+        <title>Product Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> 
+        <script>
+            window.onload = function () {
+
+                $.post("product", {op: getAll}, function (data, status) {
+                    var cat = data.cat;
+                    for (var i = 0; i < cat.length; i++) {
+                        $("#catSelect").append("<option></option>")
+                                .attr("value", data[i])
+                    }
+
+                });
+
+            }
+        </script>
 
     </head>
     <body>
         <table style="width:100%; height: auto;" class="table">
             <tr>
-                <td>
+                <td colspan="2">
                     <nav class="navbar navbar-inverse">
                         <div class="container-fluid">
                             <div class="navbar-header">
@@ -39,6 +53,27 @@
             <tr>
                 <td>
 
+
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <td>
+                                <input type="text" name="productName" required=""  placeholder=""/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <td>
+                                <select id="catSelect">
+
+                                </select>
+
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
