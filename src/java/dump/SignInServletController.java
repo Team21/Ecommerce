@@ -24,17 +24,18 @@ public class SignInServletController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        String userEmail, userPassword;
-        userEmail = request.getParameter("email");
-        userPassword = request.getParameter("password");
-//        System.out.println(userEmail+"  "+userPassword);
-        
-        registerdUser = (User) userDao.findObject(new User(userEmail, userPassword));
-        if(registerdUser!=null){
-                System.out.println(registerdUser.getEmail()+registerdUser.getAddress()+registerdUser.getPassword());
-//                response.getWriter().write("Welcome.html");
-//                response.sendRedirect("Welcome.html");
-        }
+//        
+//        String userEmail, userPassword;
+//        userEmail = request.getParameter("email");
+//        userPassword = request.getParameter("password");
+////        System.out.println(userEmail+"  "+userPassword);
+//        
+//        registerdUser = (User) userDao.findObject(new User(userEmail, userPassword));
+//        if(registerdUser!=null){
+//                System.out.println(registerdUser.getEmail()+registerdUser.getAddress()+registerdUser.getPassword());
+////                response.getWriter().write("Welcome.html");
+////                response.sendRedirect("Welcome.html");
+//        }
+//    }
     }
 }

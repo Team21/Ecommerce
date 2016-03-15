@@ -27,7 +27,9 @@ public class User {
     private String imageUrl;
     private ArrayList<Integer> pageIdList = new ArrayList<>();
     private int permissionId;
-
+    private int activated;
+    private byte[] image;
+    
     public User() {
     }
 
@@ -133,14 +135,27 @@ public class User {
 
     public ArrayList<Integer> getPageIdList() {
         return pageIdList;
-    }
 
-    public void setPermissionId(int permissionId) {
-        this.permissionId = permissionId;
-    }
-
+}
     public int getPermissionId() {
         return permissionId;
     }
 
+    public int getActivated() {
+        return activated;
+    }
+
+    public void setActivated(int activated) {
+        this.activated = activated;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }
+
+  

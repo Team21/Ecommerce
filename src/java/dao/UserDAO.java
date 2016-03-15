@@ -13,6 +13,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.Date;
 import java.util.logging.Level;
@@ -28,8 +34,31 @@ import pojo.User;
 public class UserDAO implements DAOInter {
 
     @Override
-    public int insertObject(Object admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int insertObject(Object obj) {
+        User u = (User) obj;
+        int rows = 0;
+        try {
+            Connection connection = MysqlFactory.getConnection();
+
+            String sql = "insert into user (email,fname,lname,username,password,phone,paypal,address,permission_id,activated) values(?,?,?,?,?,?,?,?,?,?) ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, u.getEmail());
+            ps.setString(2, u.getfName());
+            ps.setString(3, u.getlName());
+            ps.setString(4, u.getUserName());
+            ps.setString(5, u.getPassword());
+            ps.setString(6, u.getPhone());
+            ps.setInt(7, u.getPaypal());
+            ps.setString(8, u.getAddress());
+            ps.setInt(9, u.getPermissionId()); // permission (user = 1) (admin = 2)
+            ps.setInt(10, 1); // activated
+            //ps.setDate(11, user.getBirthdate()); // error convet util.Date to sql.Date
+            //ps.setBytes(12, u.getImage());
+            rows = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rows;
     }
 
     @Override
@@ -39,8 +68,7 @@ public class UserDAO implements DAOInter {
 
     @Override
     public Object findObject(Object admin) {
-        throw new UnsupportedOperationException("foo");
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
