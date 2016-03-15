@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,10 +13,7 @@ import java.sql.SQLException;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
-/**
- *
- * @author AndDeve
- */
+
 public class DBConnectionHandler {
 
     /*
@@ -25,7 +22,7 @@ public class DBConnectionHandler {
      */
     private static String conParam = "jdbc:mysql://127.0.0.1:3306/servletsdb",
             user = "root",
-            pass = "root";
+            pass = "eslam";
     private static Connection con;
 
     private static DBConnectionHandler connector;

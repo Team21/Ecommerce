@@ -30,7 +30,9 @@ public class User {
     }
 
     public User(String userEmail, String userPassword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.email=userEmail;
+        this.password=userPassword;
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public User(User newUser, String userPassword) {

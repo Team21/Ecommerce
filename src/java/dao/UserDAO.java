@@ -100,7 +100,7 @@ public class UserDAO implements DAOInter {
                     u.setPermissionId(resultSet.getInt("permission_id"));
                     u.setActivated(resultSet.getInt("activated"));
                     Blob imgb = resultSet.getBlob("image");
-                    System.out.println(imgb);
+                   // System.out.println(imgb);
                     if (imgb != null) {
                         byte[] imageByte = imgb.getBytes(1, (int) imgb.length());
                         System.out.println("image : "+imageByte);
