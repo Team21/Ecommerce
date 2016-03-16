@@ -7,6 +7,22 @@
     <welcome-file-list>
         <welcome-file>/indexHome.jsp </welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>DisplayProducts</servlet-name>
+        <servlet-class>controller.DisplayProducts</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayProducts</servlet-name>
+        <url-pattern>/DisplayProducts</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RequestReciever</servlet-name>
+        <servlet-class>controller.RequestReciever</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestReciever</servlet-name>
+        <url-pattern>/RequestReciever</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             100
