@@ -5,7 +5,6 @@
  */
 package controller;
 
-import com.google.gson.Gson;
 import dao.UserDAO;
 import factory.DAOFactory;
 import factory.MysqlFactory;

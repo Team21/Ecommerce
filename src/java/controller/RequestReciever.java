@@ -24,7 +24,7 @@ public class RequestReciever extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        String productId = request.getParameter("productId");
-        MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory(0);
+        MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
         Product product = new Product();
         product.setId(Integer.parseInt(productId));
         product = (Product) mysqlFactory.getProduct().findObject(product);

@@ -27,7 +27,7 @@ public class DisplayProducts extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("application/json");
-        MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory(0);
+        MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
         ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());
         PrintWriter out = response.getWriter();
         out.println(createJsonObj(products));

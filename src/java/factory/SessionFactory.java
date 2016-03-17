@@ -16,36 +16,42 @@ import pojo.User;
  * @author Ahmad Moawad <ahmadmoawad3@gmail.com>
  */
 public class SessionFactory {
-
+    
     public static final int ADMIN = 0;
     public static final int USER = 1;
     public static final int PRODUCT = 2;
-
+    public static final int PRODUCT_ARRAY_LIST = 3;
+    
     public static <T> T getSession(HttpServletRequest req, int type) {
         HttpSession session = req.getSession(false);
         if (type == ADMIN) {
             return (T) session.getAttribute("admin");
         } else if (type == USER) {
-
+            
             return (T) session.getAttribute("user");
         } else if (type == PRODUCT) {
-
+            
             return (T) session.getAttribute("product");
+        } else if (type == PRODUCT_ARRAY_LIST) {
+            
+            return (T) session.getAttribute("productArrayList");
         }
         return null;
     }
-
+    
     public static void setSession(HttpServletRequest req, int type, Object o) {
         HttpSession session = req.getSession(true);
-
+        
         if (type == ADMIN) {
             session.setAttribute("admin", o);
-        }else if(type==USER){
-        
+        } else if (type == USER) {
+            
             session.setAttribute("user", o);
-        }else if(type==PRODUCT){
-        
+        } else if (type == PRODUCT) {
+            
             session.setAttribute("product", o);
+        } else if (type == PRODUCT_ARRAY_LIST) {
+            session.setAttribute("productArrayList", o);
         }
     }
 }
