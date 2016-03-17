@@ -96,7 +96,7 @@ public class ProductDAO implements DAOInter {
                 System.out.println(imgb);
                 if (imgb != null) {
                     byte[] imageByte = imgb.getBytes(1, (int) imgb.length());
-                    System.out.println("image : " + imageByte);
+                    //System.out.println("image : " + imageByte);
                     p.setImage(imageByte);
                 }
             }
