@@ -93,7 +93,7 @@ public class ProductDAO implements DAOInter {
                 p.setCategoryId(resultSet.getInt("category_id"));
                 p.setDescription(resultSet.getString("description"));
                 Blob imgb = resultSet.getBlob("image");
-                System.out.println(imgb);
+                //System.out.println(imgb);
                 if (imgb != null) {
                     byte[] imageByte = imgb.getBytes(1, (int) imgb.length());
                     //System.out.println("image : " + imageByte);
@@ -128,10 +128,10 @@ public class ProductDAO implements DAOInter {
                 p.setCategoryId(resultSet.getInt("category_id"));
                 p.setDescription(resultSet.getString("description"));
                 Blob imgb = resultSet.getBlob("image");
-                System.out.println(imgb);
+                //System.out.println(imgb);
                 if (imgb != null) {
                     byte[] imageByte = imgb.getBytes(1, (int) imgb.length());
-                    System.out.println("image : " + imageByte);
+                    //System.out.println("image : " + imageByte);
                     p.setImage(imageByte);
                 }
             }
@@ -172,10 +172,10 @@ public class ProductDAO implements DAOInter {
                     p.setCategoryId(resultSet.getInt("category_id"));
                     p.setPrice(resultSet.getInt("price"));
                     Blob imgb = resultSet.getBlob("image");
-                    System.out.println(imgb);
+                    //System.out.println(imgb);
                     if (imgb != null) {
                         byte[] imageByte = imgb.getBytes(1, (int) imgb.length());
-                        System.out.println("image : " + imageByte);
+                        //System.out.println("image : " + imageByte);
                         p.setImage(imageByte);
 
                     }

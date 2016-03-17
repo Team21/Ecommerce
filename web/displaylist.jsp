@@ -23,7 +23,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script type = "text/javascript" language = "javascript">
             var allData;
-            
+
             $(document).ready(function () {
                 $("#displayProBtn").click(function () {
                     var jsonObject = {};
@@ -55,21 +55,20 @@
                     });
                 });
             });
-            
-            
+
+
             function addingProduct(id) {
-                var product = allData[id];
-                alert(product.id);
-                var jsonObject = {"productId":product.id};
+                alert(id);
+                var jsonObject = {"productId": id};
                 $.ajax({
-                        url: 'RequestReciever',
-                        type: 'get',
-                        contentType: 'application/json',
-                        data: jsonObject,
-                        dataType: 'json',
-                        success: function (data) {
-                        }
-                    });
+                    url: 'RequestReciever',
+                    type: 'get',
+                    contentType: 'application/json',
+                    data: jsonObject,
+                    dataType: 'json',
+                    success: function (data) {
+                    }
+                });
             }
         </script>
         <meta charset="utf-8">
@@ -100,15 +99,38 @@
             <h3>Show All Products</h3>
             <button id="displayProBtn">Execute Query</button>
         </div>
-        <div id="divOfProduct" style="background: red">
-<!--            <table id="prodView">
-                <tr>
-                    <th> Name</th>
-                    <th> Price</th>
-                    <th> Disc</th>
-                </tr>
-            </table>-->
-            <%%>
+        <div id="divOfProduct">
+            <!--            <table id="prodView">
+                            <tr>
+                                <th> Name</th>
+                                <th> Price</th>
+                                <th> Disc</th>
+                            </tr>
+                        </table>-->
+            <%
+                MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory(0);
+                ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());
+                pageContext.setAttribute("products", products);
+            %>
+
+            <ul class="thumbnails">
+                <c:forEach begin="0" end="7" items="${products}" var="current">
+                    <li class="span3">
+                        <div class="thumbnail">
+                            <a  href="product_details.html"><img src="themes/images/products/6.jpg" alt=""/></a>
+                            <div class="caption">
+                                <h5><c:out value="${current.name}" /></h5>
+                                <p> 
+                                    <c:out value="${current.description}" /> 
+                                    <c:out value="${current.id}" />
+                                </p>
+                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" onclick="addingProduct( <c:out value="${current.id}" /> );">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$<c:out value="${current.price}" /></a></h4>
+                                
+                            </div>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
         </div>
     </center>
 </body>
