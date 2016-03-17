@@ -5,14 +5,12 @@
  */
 package database;
 
+import com.jolbox.bonecp.BoneCP;
+import com.jolbox.bonecp.BoneCPConfig;
 import java.sql.Connection;
 import com.mysql.jdbc.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import com.jolbox.bonecp.BoneCP;
-import com.jolbox.bonecp.BoneCPConfig;
-
 
 public class DBConnectionHandler {
 
@@ -22,7 +20,8 @@ public class DBConnectionHandler {
      */
     private static String conParam = "jdbc:mysql://127.0.0.1:3306/servletsdb",
             user = "root",
-            pass = "root";
+            pass = "null";
+
     private static Connection con;
 
     private static DBConnectionHandler connector;
@@ -57,8 +56,8 @@ public class DBConnectionHandler {
         //return connector.con;
         return connector;
     }
-    
-     public Connection getConnection() throws SQLException {
+
+    public Connection getConnection() throws SQLException {
         return this.connectionPool.getConnection();
     }
 

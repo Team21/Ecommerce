@@ -13,9 +13,8 @@ import dao.*;
  */
 public abstract class DAOFactory {
 
-    public static final int MYSQL = 0;
-
-    public static DAOFactory getDAOFactory(int type) {
+    
+    public static DAOFactory getDAOFactory() {
         return new MysqlFactory();
     }
 }

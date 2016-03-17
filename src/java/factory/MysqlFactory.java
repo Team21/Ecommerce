@@ -20,15 +20,11 @@ import java.util.logging.Logger;
  */
 public class MysqlFactory extends DAOFactory {
 
-    //connection here
-    public static Connection getConnection() {
-        try {
 
-            return DBConnectionHandler.getInstance().getConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(MysqlFactory.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+
+    //connection here
+    public static Connection getConnection() throws SQLException {
+        return DBConnectionHandler.getInstance().getConnection();
     }
 
     public AdminDAO getAdmin() {
