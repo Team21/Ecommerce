@@ -12,8 +12,6 @@ import com.mysql.jdbc.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
 public class DBConnectionHandler {
 
     /*
@@ -23,6 +21,7 @@ public class DBConnectionHandler {
     private static String conParam = "jdbc:mysql://127.0.0.1:3306/servletsdb",
             user = "root",
             pass = "null";
+
     private static Connection con;
 
     private static DBConnectionHandler connector;
@@ -57,8 +56,8 @@ public class DBConnectionHandler {
         //return connector.con;
         return connector;
     }
-    
-     public Connection getConnection() throws SQLException {
+
+    public Connection getConnection() throws SQLException {
         return this.connectionPool.getConnection();
     }
 
