@@ -18,6 +18,8 @@
     <servlet-mapping>
         <servlet-name>RequestReciever</servlet-name>
         <url-pattern>/RequestReciever</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminLogin</servlet-name>
         <servlet-class>controller.AdminLogin</servlet-class>
     </servlet>

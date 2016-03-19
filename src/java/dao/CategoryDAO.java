@@ -7,30 +7,32 @@ package dao;
 
 import factory.MysqlFactory;
 import interfaces.DAOInter;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.RowSet;
 import pojo.Category;
 import pojo.Permission;
+import pojo.Product;
 
 /**
  *
  * @author Hossam
  */
-public class CategoryDAO implements DAOInter{
-    
+public class CategoryDAO implements DAOInter {
+
     Statement stmt;
     ResultSet resultSet;
     Connection connection;
     String sql;
     PreparedStatement ps;
-    
 
     @Override
     public int insertObject(Object obj) {
@@ -93,9 +95,29 @@ public class CategoryDAO implements DAOInter{
 
     @Override
     public Collection selectObjectsTO(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Category> categorys = new ArrayList<>();
+        sql = "select * from category";
+        try {
+            connection = MysqlFactory.getConnection();
+            ps = connection.prepareStatement(sql);
+            resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                Category c = new Category();
+                c.setId(resultSet.getInt("id"));
+                c.setName(resultSet.getString("name"));
+                Blob imgb = resultSet.getBlob("image");
+                if (imgb != null) {
+                    byte[] imageByte = imgb.getBytes(1, (int) imgb.length());
+                    c.setImage(imageByte);
+                }
+                categorys.add(c);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return categorys;
     }
 
-    
-    
 }

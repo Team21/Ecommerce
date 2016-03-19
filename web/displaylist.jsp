@@ -4,10 +4,13 @@
     Author     : AndDeve
 --%>
 
+<%@page import="pojo.User"%>
+<%@page import="factory.SessionFactory"%>
 <%@ page import="java.util.*"%>
 <%@ page import="javax.servlet.*"%>
 <%@ page import="java.lang.String"%>
 <%@ page import="factory.DAOFactory"%>
+<%@page import="pojo.Category"%>
 <%@ page import="pojo.Product"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -22,40 +25,6 @@
         <title>Display Products</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script type = "text/javascript" language = "javascript">
-            var allData;
-
-            $(document).ready(function () {
-                $("#displayProBtn").click(function () {
-                    var jsonObject = {};
-                    $.ajax({
-                        url: 'DisplayProducts',
-                        type: 'get',
-                        contentType: 'application/json',
-                        data: jsonObject,
-                        dataType: 'json',
-                        success: function (data) {
-                            allData = data;
-                            for (var i = 0; i < data.length; i++) {
-//                                $("#prodView").append("<tr><td>  " + data[i].name + "</td><td> " + data[i].price + "</td><td> " + data[i].quantity + "</td><td><button id=" + i + " onclick='addingProduct(" + data[i].id + ")'>Add</button></td></tr>");
-//                                $("#divOfProduct").append("<div id="+data[i].id+" >  " + data[i].name + "<br/> " + data[i].price + "<br/> " + data[i].quantity + "<br/><button id=" + i + " onclick='addingProduct(" + data[i].id + ")'>Add</button><br></div>");
-//                                $("#divOfProduct").append("<div class="+ data[i].id+"> "+
-//                                        " <a  href='product_details.html'><img src='themes/images/products/7.jpg' alt=""/></a>" +
-//                                        " <div class= caption>"+
-//                                             "<h5>" + data[i].name + "</h5>"+
-//                                             "<p>"+ 
-//                                                " Lorem Ipsum is simply dummy text. "+
-//                                             "</p>"
-//                                             "<h4 style='text-align:center'><a class='btn' href='product_details.html'>"+
-//                                               " <i class='icon-zoom-in'></i></a> <a class='btn' href='#'>Add to <i class='icon-shopping-cart'>"+
-//                                               "</i></a> <a class='btn btn-primary' href='#'>"+$data[i].price +"</a></h4>"+
-//                                         "</div>"+
-//                                     "</div>");
-                            }
-                        }
-                    });
-                });
-            });
-
 
             function addingProduct(id) {
                 alert(id);
@@ -93,45 +62,63 @@
         <link rel="apple-touch-icon-precomposed" href="themes/images/ico/apple-touch-icon-57-precomposed.png">
         <style type="text/css" id="enject"></style>
     </head>
-    <body>
-    <center>
-        <div id="divOfBtn">
-            <h3>Show All Products</h3>
-            <button id="displayProBtn">Execute Query</button>
-        </div>
-        <div id="divOfProduct">
-            <!--            <table id="prodView">
-                            <tr>
-                                <th> Name</th>
-                                <th> Price</th>
-                                <th> Disc</th>
-                            </tr>
-                        </table>-->
-            <%
-                MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory(0);
-                ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());
-                pageContext.setAttribute("products", products);
-            %>
+    <body background="HomeImages/cloud-hd-backgrounds.jpg">
+        
+        <%
+            // to get all product 
+            MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
+            ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());
+            pageContext.setAttribute("products", products);
+            // to get all category
+            ArrayList<Category> categorys = (ArrayList<Category>) mysqlFactory.getCategory().selectObjectsTO(new Category());
+            pageContext.setAttribute("categorys", categorys);
+            // get number of product to each category
+            //select c.id,count(p.name) FROM `servletsdb`.`product` p JOIN `servletsdb`.`category` c WHERE c.id = p.category_id Group by p.category_id;
+            //NEED add proprty to category pojo (#product)
+            User user = (User) SessionFactory.getSession(request, SessionFactory.USER);
+            pageContext.setAttribute("user", user);
 
-            <ul class="thumbnails">
-                <c:forEach begin="0" end="7" items="${products}" var="current">
-                    <li class="span3">
-                        <div class="thumbnail">
-                            <a  href="product_details.html"><img src="themes/images/products/6.jpg" alt=""/></a>
-                            <div class="caption">
-                                <h5><c:out value="${current.name}" /></h5>
-                                <p> 
-                                    <c:out value="${current.description}" /> 
-                                    <c:out value="${current.id}" />
-                                </p>
-                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" onclick="addingProduct( <c:out value="${current.id}" /> );">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$<c:out value="${current.price}" /></a></h4>
-                                
-                            </div>
-                        </div>
-                    </li>
-                </c:forEach>
-            </ul>
+        %>
+        <%--<%@include file="header.jsp" %>--%>  <!-- include before create --> 
+        <jsp:include page="header.jsp" flush="" />
+        <!-- Main Bocy ================================================== -->
+        <div id="mainBody" style="margin-top: -2px;">
+            <div class="container" style="height:850px">
+                <div class="row" style="height:850px">
+                    <!--Side bar eley 3al shemal On left-->
+                    <%@include file="sidebar.jsp" %>
+                    <%--<jsp:include page="sidebar.jsp" flush="" />--%>  <!-- Not good in design  --> 
+                    <a href="products.html" role="button"  style="padding-right:0;  width: 234px; height: 20px;">
+                        <span class="btn btn-info ">
+                            <h4 style="color:#FFF; font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif;  text-shadow:#999; ">  Our Products : </h4>
+                        </span>
+                    </a>
+                    <br/>
+                    <br/>
+                    <ul class="thumbnails">
+                        <c:forEach begin="0" end="5" items="${products}" var="current">
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <a  href="product_details.html"><img src="themes/images/products/6.jpg" alt=""/></a>
+                                    <div class="caption">
+                                        <h5><c:out value="${current.name}" /></h5>
+                                        <p> 
+                                            <c:out value="${current.description}" /> 
+                                            <c:out value="${current.id}" />
+                                        </p>
+                                        <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" onclick="addingProduct(<c:out value="${current.id}" />);">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$<c:out value="${current.price}" /></a></h4>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </center>
-</body>
+        <!--</div>-->   
+        <!-- Footer ================================================================== -->
+        <%--<%@include file="footer.jsp" %>--%>
+        <jsp:include page="footer.jsp" flush="" />
+    </body>
 </html>

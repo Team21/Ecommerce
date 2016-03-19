@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import factory.SessionFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Blob;
@@ -40,7 +41,7 @@ public class SignInServletController extends HttpServlet {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "eslam";
+    static final String PASS = "root";
     Connection myConnection = null;
     Statement myStatment = null;
     PreparedStatement insertStatement = null, insertStatement2 = null;
@@ -122,8 +123,9 @@ public class SignInServletController extends HttpServlet {
             System.out.println(registerdUser.getPassword());
             System.out.println(registerdUser.getPaypal());
             if (userEmail.equals(dbmail) && userPassword.equals(dbpassword)) {
-                RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
-                request.setAttribute("user", registerdUser);
+                RequestDispatcher rd = request.getRequestDispatcher("displaylist.jsp");
+//                request.setAttribute("user", registerdUser);
+                SessionFactory.setSession(request, SessionFactory.USER, registerdUser);
                 
                 
                 rd.forward(request, response);

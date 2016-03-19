@@ -69,4 +69,9 @@ public class MysqlFactory extends DAOFactory {
 
         return new UserDAO();
     }
+    
+    public BillDAO getBill() {
+
+        return new BillDAO();
+    }
 }

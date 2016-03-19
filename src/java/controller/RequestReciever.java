@@ -7,8 +7,10 @@ package controller;
 
 import factory.DAOFactory;
 import factory.MysqlFactory;
+import factory.SessionFactory;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +25,28 @@ public class RequestReciever extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       String productId = request.getParameter("productId");
+        String productId = request.getParameter("productId");
         MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
         Product product = new Product();
         product.setId(Integer.parseInt(productId));
         product = (Product) mysqlFactory.getProduct().findObject(product);
-        System.out.println("Name:     "+product.getName());
+
+        Set<Product> products = SessionFactory.getSession(request, SessionFactory.PRODUCT_ARRAY_LIST);
+        // if (arrayList) products not initial ---- for nullPointerException 
+        if (products == null) 
+            products = new HashSet<>();
+        // if product already selected before .... flage will be false 
+        boolean flage = true;
+        for (Product p : products) 
+            if (p.getId() == product.getId()) 
+                flage = false;
+
+        if (flage) {
+            products.add(product); // add product to list of selected products
+            SessionFactory.setSession(request, SessionFactory.PRODUCT_ARRAY_LIST, products);
+            System.out.println("new Name:     " + product.getName());
+            System.out.println("new Name:     " + product.getId());
+        }
     }
-    
+
 }

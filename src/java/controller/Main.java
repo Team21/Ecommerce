@@ -9,7 +9,11 @@ import dao.AdminDAO;
 import dao.UserDAO;
 import factory.DAOFactory;
 import factory.MysqlFactory;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import pojo.Bill;
+import pojo.Order;
 import pojo.Permission;
 import pojo.User;
 
@@ -36,17 +40,17 @@ public class Main {
 //        System.out.println("insertRows : "+ insertRows);
 //    }
 //    
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //        //get dao from factory
-//        MysqlFactory obj = (MysqlFactory) DAOFactory.getDAOFactory(0);
+        MysqlFactory obj = (MysqlFactory) DAOFactory.getDAOFactory();
 //        
-////        User u = new User();
-////        u.setActivated(1); u.setAddress("qqqqqq"); u.setBirthdate(new Date()); u.setEmail("moawad@yahoo.com");
-////        u.setPassword("2342432w"); u.setPaypal(324); u.setPermissionId(3); u.setPhone("23423423");
-////        u.setUserName("ahmed"); u.setfName("ahmed"); u.setlName("ahmed");
-////        UserDAO userDAO = obj.getUser();
-////        int insertRows = userDAO.insertObject(u);
-////        System.out.println("insertRows : "+ insertRows);
+//        User u = new User();
+//        u.setActivated(1); u.setAddress("qqqqqq"); u.setBirthdate(new Date()); u.setEmail("moawad@yahoo.com");
+//        u.setPassword("2342432w"); u.setPaypal(324); u.setPermissionId(3); u.setPhone("23423423");
+//        u.setUserName("ahmed"); u.setfName("ahmed"); u.setlName("ahmed");
+//        UserDAO userDAO = obj.getUser();
+//        int insertRows = userDAO.insertObject(u);
+//        System.out.println("insertRows : "+ insertRows);
 //        
 ////        User u = new User();
 ////        u.setEmail("karim@yahoo.com"); u.setPassword("1234");
@@ -62,6 +66,19 @@ public class Main {
 //        p.setDescription("newUser"); p.setName("newUser");
 //        int insertRows = obj.getPermission().insertObject(p);
 //        System.out.println("insertRows : "+ insertRows);
-//    }
+        
+        
+        User u = new User(); u.setId(10);
+        
+        ArrayList<Bill> bills = (ArrayList<Bill>) obj.getBill().selectObjectsTO(u);
+        for (Bill bill : bills) {
+            System.out.println(""+bill.getId());
+        }
+        
+        ArrayList<Order> orders = (ArrayList<Order>) obj.getOrder().selectObjectsTO(bills.get(1));
+        for (Order order : orders) {
+            System.err.println("Order : "+order.getQuantity());
+        }
+    }
 
 }
