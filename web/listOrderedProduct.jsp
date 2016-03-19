@@ -56,6 +56,7 @@
                 products = new HashSet<>();
             }
             pageContext.setAttribute("listOrderedProducts", products);
+            
         %>
         <jsp:include page="header.jsp" flush="" />
         <!-- Main Bocy ================================================== -->

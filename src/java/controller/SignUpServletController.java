@@ -5,7 +5,6 @@
  */
 package controller;
 
-import static controller.SignInServletController.DB_URL;
 import dao.UserDAO;
 import database.DBConnectionHandler;
 import factory.MysqlFactory;

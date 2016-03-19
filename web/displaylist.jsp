@@ -68,6 +68,8 @@
             // to get all product 
             MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
             ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());
+            //int numOfProduct = products.size();
+//            pageContext.setAttribute("numOfProduct", numOfProduct);
             pageContext.setAttribute("products", products);
             // to get all category
             ArrayList<Category> categorys = (ArrayList<Category>) mysqlFactory.getCategory().selectObjectsTO(new Category());
@@ -104,7 +106,7 @@
                                         <h5><c:out value="${current.name}" /></h5>
                                         <p> 
                                             <c:out value="${current.description}" /> 
-                                            <c:out value="${current.id}" />
+                                            
                                         </p>
                                         <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" onclick="addingProduct(<c:out value="${current.id}" />);">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$<c:out value="${current.price}" /></a></h4>
 

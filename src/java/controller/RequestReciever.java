@@ -46,6 +46,7 @@ public class RequestReciever extends HttpServlet {
             SessionFactory.setSession(request, SessionFactory.PRODUCT_ARRAY_LIST, products);
             System.out.println("new Name:     " + product.getName());
             System.out.println("new Name:     " + product.getId());
+            System.out.println("size of products : "+products.size());
         }
     }
 
