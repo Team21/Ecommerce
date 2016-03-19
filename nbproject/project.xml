@@ -8,23 +8,18 @@
             <web-module-libraries>
                 <library dirs="200">
                     <file>${file.reference.gson-2.2.2.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.bonecp-0.7.1.RELEASE.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.guava-16.0.1.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.slf4j-api-1.7.18.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.slf4j-jdk14-1.7.18.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${libs.MySQLDriver.classpath}</file>

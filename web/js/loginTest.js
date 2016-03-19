@@ -17,6 +17,7 @@ $(document).ready(function () {
 
     $("#formlogin").submit(function (event) {
 
+      
         var email = $("#inputEmail").val();
         var password = $("#inputPassword").val();
         if (email == null || email == "" || email == " " || (!regex.test(email))) {
@@ -59,15 +60,19 @@ $(document).ready(function () {
         if (passflag == true && emailflag == true) {
             //valid email and password
 
-            $("#loginError").html("thanks for Logging in..");
+            $("#loginError").html("Logging in..");
+
+
+           //  $("#loadimg").html("<img src='HomeImages/loadingWait.gif' alt='Loading Please Wait..' width='100px' height='100px' >");
+
+
             return true;
-            
 
         }
         else if (passflag == false || emailflag == false) {
-            $("#loginError").html("Login :");
-             event.preventDefault();
-             return false;
+            $("#loginError").html("Please Enter Valid Data.");
+            event.preventDefault();
+            return false;
 
         }
 

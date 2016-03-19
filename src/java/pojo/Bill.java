@@ -15,7 +15,7 @@ public class Bill {
     private int  id;
     private double totalPrice;
     private Date buyDate;
-    private String userID;
+    private int userID;
 
     public int getId() {
         return id;
@@ -41,11 +41,11 @@ public class Bill {
         this.buyDate = buyDate;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 

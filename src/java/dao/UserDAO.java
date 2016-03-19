@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.RowSet;
+import pojo.Product;
 import pojo.User;
 
 /**
@@ -32,15 +33,21 @@ import pojo.User;
  */
 public class UserDAO implements DAOInter {
 
+    Statement stmt;
+    ResultSet resultSet;
+    Connection connection;
+    String sql;
+    PreparedStatement ps;
+    
     @Override
     public int insertObject(Object obj) {
         User u = (User) obj;
         int rows = 0;
         try {
-            Connection connection = MysqlFactory.getConnection();
+            connection = MysqlFactory.getConnection();
 
-            String sql = "insert into user (email,fname,lname,username,password,phone,paypal,address,permission_id,activated) values(?,?,?,?,?,?,?,?,?,?) ";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            sql = "insert into user (email,fname,lname,username,password,phone,paypal,address,permission_id,activated) values(?,?,?,?,?,?,?,?,?,?) ";
+            ps = connection.prepareStatement(sql);
             ps.setString(1, u.getEmail());
             ps.setString(2, u.getfName());
             ps.setString(3, u.getlName());
@@ -51,7 +58,7 @@ public class UserDAO implements DAOInter {
             ps.setString(8, u.getAddress());
             ps.setInt(9, u.getPermissionId()); // permission (user = 1) (obj = 2)
             ps.setInt(10, 1); // activated
-            //ps.setDate(11, user.getBirthdate()); // error convet util.Date to sql.Date
+//            ps.setDate(11, user.getBirthdate()); // error convet util.Date to sql.Date
             //ps.setBytes(12, u.getImage());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
@@ -67,7 +74,47 @@ public class UserDAO implements DAOInter {
 
     @Override
     public Object findObject(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        User userObj = (User) obj;
+        sql = "select * from user where email=? ";
+        try {
+            connection = MysqlFactory.getConnection();
+
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, userObj.getEmail());
+            resultSet = ps.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("User Not Exist");
+                return null;
+            } else {
+                resultSet.next();
+                if(userObj.getPassword().equals(resultSet.getString("password"))) {
+                    User u = new User();
+                    u.setId(resultSet.getInt("id"));
+                    u.setfName(resultSet.getString("fname"));
+                    u.setlName(resultSet.getString("lname"));
+                    u.setEmail(resultSet.getString("email"));
+                    u.setAddress(resultSet.getString("address"));
+                    u.setUserName(resultSet.getString("username"));
+                    u.setPassword(resultSet.getString("password"));
+                    u.setPhone(resultSet.getString("phone"));
+                    u.setBirthdate(resultSet.getDate("birthdate"));
+                    u.setPaypal(resultSet.getInt("paypal"));
+                    u.setPermissionId(resultSet.getInt("permission_id"));
+                    u.setActivated(resultSet.getInt("activated"));
+
+                    Blob imgb = resultSet.getBlob("image");
+                    if (imgb != null) {
+                        byte[] imageByte = imgb.getBytes(1, (int) imgb.length());
+                        u.setImage(imageByte);
+                    }
+                    return u;
+                }
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

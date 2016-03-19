@@ -20,7 +20,7 @@ public class DBConnectionHandler {
      */
     private static String conParam = "jdbc:mysql://127.0.0.1:3306/servletsdb",
             user = "root",
-            pass = "null";
+            pass = "root";
 
     private static Connection con;
 
