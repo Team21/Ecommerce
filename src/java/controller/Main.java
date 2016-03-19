@@ -44,13 +44,15 @@ public class Main {
 //        //get dao from factory
         MysqlFactory obj = (MysqlFactory) DAOFactory.getDAOFactory();
 //        
-//        User u = new User();
-//        u.setActivated(1); u.setAddress("qqqqqq"); u.setBirthdate(new Date()); u.setEmail("moawad@yahoo.com");
-//        u.setPassword("2342432w"); u.setPaypal(324); u.setPermissionId(3); u.setPhone("23423423");
-//        u.setUserName("ahmed"); u.setfName("ahmed"); u.setlName("ahmed");
-//        UserDAO userDAO = obj.getUser();
-//        int insertRows = userDAO.insertObject(u);
-//        System.out.println("insertRows : "+ insertRows);
+        User u = new User();
+        u.setActivated(1); u.setAddress("qqqqqq"); u.setBirthdate(new Date()); u.setEmail("moawad@yahoo.com");
+        u.setPassword("2342432w"); u.setPaypal(324); u.setPermissionId(3); u.setPhone("23423423");
+        u.setUserName("ahmed"); u.setfName("ahmed"); u.setlName("ahmed");
+        UserDAO userDAO = obj.getUser();
+        int insertRows = userDAO.insertObject(u);
+        System.out.println("insertRows : "+ insertRows);
+        
+        obj.getUser().insertObject(u);
 //        
 ////        User u = new User();
 ////        u.setEmail("karim@yahoo.com"); u.setPassword("1234");
@@ -68,17 +70,17 @@ public class Main {
 //        System.out.println("insertRows : "+ insertRows);
         
         
-        User u = new User(); u.setId(10);
-        
-        ArrayList<Bill> bills = (ArrayList<Bill>) obj.getBill().selectObjectsTO(u);
-        for (Bill bill : bills) {
-            System.out.println(""+bill.getId());
-        }
-        
-        ArrayList<Order> orders = (ArrayList<Order>) obj.getOrder().selectObjectsTO(bills.get(1));
-        for (Order order : orders) {
-            System.err.println("Order : "+order.getQuantity());
-        }
+//        User u = new User(); u.setId(10);
+//        
+//        ArrayList<Bill> bills = (ArrayList<Bill>) obj.getBill().selectObjectsTO(u);
+//        for (Bill bill : bills) {
+//            System.out.println(""+bill.getId());
+//        }
+//        
+//        ArrayList<Order> orders = (ArrayList<Order>) obj.getOrder().selectObjectsTO(bills.get(1));
+//        for (Order order : orders) {
+//            System.err.println("Order : "+order.getQuantity());
+//        }
     }
 
 }
