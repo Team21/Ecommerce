@@ -23,14 +23,13 @@ import pojo.Permission;
  *
  * @author Hossam
  */
-public class CategoryDAO implements DAOInter{
-    
+public class CategoryDAO implements DAOInter {
+
     Statement stmt;
     ResultSet resultSet;
     Connection connection;
     String sql;
     PreparedStatement ps;
-    
 
     @Override
     public int insertObject(Object obj) {
@@ -39,11 +38,20 @@ public class CategoryDAO implements DAOInter{
         try {
             connection = MysqlFactory.getConnection();
 
-            sql = "insert into category (name) values(?) ";
-            ps = connection.prepareStatement(sql);
-            ps.setString(1, c.getName());
-            //ps.setBytes(2, c.getImage());
-            rows = ps.executeUpdate();
+            if (c.getImage() == null) {
+                sql = "insert into category (name) values(?) ";
+                ps = connection.prepareStatement(sql);
+
+                ps.setString(1, c.getName());
+
+            } else {
+                sql = "insert into category (name,image) values(?,?) ";
+                ps = connection.prepareStatement(sql);
+
+                ps.setString(1, c.getName());
+                ps.setBytes(2, c.getImage());
+            }
+            return rows = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(PermissionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,6 +104,4 @@ public class CategoryDAO implements DAOInter{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
 }

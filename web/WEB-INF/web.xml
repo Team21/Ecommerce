@@ -7,6 +7,10 @@
         <servlet-name>DisplayProducts</servlet-name>
         <servlet-class>controller.DisplayProducts</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Category</servlet-name>
+        <servlet-class>controller.category.CategoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DisplayProducts</servlet-name>
         <url-pattern>/DisplayProducts</url-pattern>
@@ -18,12 +22,18 @@
     <servlet-mapping>
         <servlet-name>RequestReciever</servlet-name>
         <url-pattern>/RequestReciever</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminLogin</servlet-name>
         <servlet-class>controller.AdminLogin</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminLogin</servlet-name>
         <url-pattern>/adm/adminLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Category</servlet-name>
+        <url-pattern>/adm/category</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
