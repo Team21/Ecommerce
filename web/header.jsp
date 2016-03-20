@@ -9,9 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="pojo.User"%>
 <%@ page import="factory.SessionFactory"%>
-<%
-    User u = (User) SessionFactory.getSession(request, SessionFactory.USER);
-%>
 <div id="header">
     <div class="container">
         <div id="welcomeLine" class="row">
@@ -24,7 +21,7 @@
                                     User
                                 </c:when>
                                 <c:otherwise>
-                                    <%=u.getUserName()%> 
+                                    ${sessionScope.user.getUserName()}
 
                                 </c:otherwise>
                             </c:choose>
@@ -39,14 +36,14 @@
                             <a href="product_summary.html">
                                 <span  class="btn btn-mini" style="font-weight:bold;  font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif; color:#C00;" >Your Credit : </span>
                             </a>
-                            <span class="btn btn-mini"><b style="color: #00cc00; ">$</b><%=((User) SessionFactory.getSession(request, SessionFactory.USER)).getPaypal()%>  </span>
+                            <span class="btn btn-mini"><b style="color: #00cc00; ">$</b> ${sessionScope.user.getPaypal()} </span>
                             <a href="product_summary.html">
                                 <span class="btn btn-mini btn-primary">
                                     <i class="icon-shopping-cart icon-white"></i>
                                     <b style="color:#F93" id="NumberOfProductsInCart" name="NumberOfProductsInCart" value="NumberOfProductsInCart" >
                                         <c:choose>
-                                            <c:when test="${products!=null}">
-                                                [ <%=((Set<Product>) SessionFactory.getSession(request, SessionFactory.PRODUCT_ARRAY_LIST)).size()%>  ]
+                                            <c:when test="${sessionScope.productArrayList!=null}">
+                                                 [ ${sessionScope.numOfProducts} ]
                                             </c:when>
                                             <c:otherwise>
                                                 [ 0 ]

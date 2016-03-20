@@ -63,24 +63,7 @@
         <style type="text/css" id="enject"></style>
     </head>
     <body background="HomeImages/cloud-hd-backgrounds.jpg">
-        
-        <%
-            // to get all product 
-            MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
-            ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());
-            //int numOfProduct = products.size();
-//            pageContext.setAttribute("numOfProduct", numOfProduct);
-            pageContext.setAttribute("products", products);
-            // to get all category
-            ArrayList<Category> categorys = (ArrayList<Category>) mysqlFactory.getCategory().selectObjectsTO(new Category());
-            pageContext.setAttribute("categorys", categorys);
-            // get number of product to each category
-            //select c.id,count(p.name) FROM `servletsdb`.`product` p JOIN `servletsdb`.`category` c WHERE c.id = p.category_id Group by p.category_id;
-            //NEED add proprty to category pojo (#product)
-            User user = (User) SessionFactory.getSession(request, SessionFactory.USER);
-            pageContext.setAttribute("user", user);
 
-        %>
         <%--<%@include file="header.jsp" %>--%>  <!-- include before create --> 
         <jsp:include page="header.jsp" flush="" />
         <!-- Main Bocy ================================================== -->
@@ -98,7 +81,7 @@
                     <br/>
                     <br/>
                     <ul class="thumbnails">
-                        <c:forEach begin="0" end="5" items="${products}" var="current">
+                        <c:forEach begin="0" end="5" items="${sessionScope.products}" var="current">
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a  href="product_details.html"><img src="themes/images/products/6.jpg" alt=""/></a>

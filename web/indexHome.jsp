@@ -29,7 +29,12 @@
     </head>
 
     <body >
-
+        <%
+//            Cookie[] cookies = request.getCookies();
+//            if (cookies != null) {
+//                response.sendRedirect("");
+//            }
+        %>
 
         <div class="container" style="background-image: url(HomeImages/welcome_back.png); width:1366px; height: 677px; ">
             <div id="welcomeLine" class="row" > 
@@ -61,9 +66,10 @@
                                 <b id="passwordError" style="color: #C00;"> </b> </div>
                             <div class="control-group">
                                 <label class="checkbox" style="color:#008ab8;  font-size: small; font-family: cursive;">
-                                    <input type="checkbox"/>Remember me
+                                    <input name="RememberMe"  type="checkbox"/>Remember me
                                 </label>
                             </div>
+                           
                             <div class="control-group">
                                 <button type="submit" id="btnLogin" class="btn btn-large " style="font-weight: bolder; font-size: x-large; font-family: cursive;  background: #FFF; color: #008ab8;">Sign in</button>
                                 <!--                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>-->
@@ -139,14 +145,14 @@
                                     <label class="control-label text-info" style="font-weight: bold; font-size: large;" for="input_email">Email <sup style="color: tomato;">*</sup></label>
                                     <div class="controls">
                                         <input type="text" class="span6" id="input_email" placeholder="Email" required="true" name="inputEmail">
-                                        <b id="emailError" style="color: tomato;"></b>
+                                        <b id="emailError" style="color: tomato;">${sessionScope.invalidEmail}</b>
                                     </div>
                                 </div>	  
                                 <div class="control-group">
                                     <label class="control-label text-info" style="font-weight: bold; font-size: large;" for="inputPassword1">Password <sup style="color: tomato;">*</sup></label>
                                     <div class="controls">
                                         <input type="password" class="span6" id="inputPassword1" placeholder="Password" required="true" name="inputPassword">
-                                        <b id="passwordError" style="color: tomato;"></b>
+                                        <b id="passwordError" style="color: tomato;">  </b>
                                     </div>
                                 </div>	 
 
@@ -241,7 +247,7 @@
                                             <option value="1993">1993&nbsp;&nbsp;</option>
 
                                         </select>
-<!--                                        <b id="lnameError" style="color: tomato;">date error</b>-->
+                                        <!--                                        <b id="lnameError" style="color: tomato;">date error</b>-->
                                     </div>
                                 </div>
 

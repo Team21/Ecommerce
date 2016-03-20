@@ -38,7 +38,7 @@ public class UserDAO implements DAOInter {
     Connection connection;
     String sql;
     PreparedStatement ps;
-    
+
     @Override
     public int insertObject(Object obj) {
         User u = (User) obj;
@@ -87,7 +87,7 @@ public class UserDAO implements DAOInter {
                 return null;
             } else {
                 resultSet.next();
-                if(userObj.getPassword().equals(resultSet.getString("password"))) {
+                if (userObj.getPassword().equals(resultSet.getString("password"))) {
                     User u = new User();
                     u.setId(resultSet.getInt("id"));
                     u.setfName(resultSet.getString("fname"));
@@ -109,7 +109,6 @@ public class UserDAO implements DAOInter {
                     }
                     return u;
                 }
-                
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -130,6 +129,28 @@ public class UserDAO implements DAOInter {
     @Override
     public Collection selectObjectsTO(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getUserID(String email) {
+        sql = "select id from user where email=? ";
+        int id = 0;
+        try {
+            connection = MysqlFactory.getConnection();
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            resultSet = ps.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("User Not Exist");
+                return 0;
+            } else {
+                resultSet.next();
+                id = resultSet.getInt("id");
+                return id;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
 }

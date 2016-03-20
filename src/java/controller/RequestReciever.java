@@ -9,6 +9,7 @@ import factory.DAOFactory;
 import factory.MysqlFactory;
 import factory.SessionFactory;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.ServletException;
@@ -31,17 +32,17 @@ public class RequestReciever extends HttpServlet {
         product.setId(Integer.parseInt(productId));
         product = (Product) mysqlFactory.getProduct().findObject(product);
 
-        Set<Product> products = SessionFactory.getSession(request, SessionFactory.PRODUCT_ARRAY_LIST);
+        ArrayList<Product> products = SessionFactory.getSession(request, SessionFactory.PRODUCT_ARRAY_LIST);
         // if (arrayList) products not initial ---- for nullPointerException 
         if (products == null) 
-            products = new HashSet<>();
+            products = new ArrayList<>();
         // if product already selected before .... flage will be false 
-        boolean flage = true;
+        boolean flag = true;
         for (Product p : products) 
             if (p.getId() == product.getId()) 
-                flage = false;
+                flag = false;
 
-        if (flage) {
+        if (flag) {
             products.add(product); // add product to list of selected products
             SessionFactory.setSession(request, SessionFactory.PRODUCT_ARRAY_LIST, products);
             System.out.println("new Name:     " + product.getName());

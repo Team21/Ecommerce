@@ -17,8 +17,9 @@
     <c:if test="${user!=null}">
         <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="themes/images/ico-cart.png" alt="cart">
                 <c:choose>
-                    <c:when test="${SessionFactory.getSession(request, SessionFactory.PRODUCT_ARRAY_LIST)!=null}">
-                        [ <%=((Set<Product>) SessionFactory.getSession(request, SessionFactory.PRODUCT_ARRAY_LIST)).size()%>  ]
+                    <c:when test="${sessionScope.productArrayList!=null}">
+                        
+                        [ ${sessionScope.numOfProducts} ]
                     </c:when>
                     <c:otherwise>
                         [ 0 ]
@@ -26,14 +27,14 @@
                 </c:choose> 
                 Items in your cart  
                 <span class="badge badge-warning pull-right">
-                    $<%=((User) SessionFactory.getSession(request, SessionFactory.USER)).getPaypal()%> 
+                    <b style="color: #00cc00; ">$</b> ${sessionScope.user.getPaypal()}
                 </span></a>
         </div>
     </c:if>
     <ul id="sideManu" class="nav nav-tabs nav-stacked">
         <li class="subMenu open"><a> ELECTRONICS [230]</a>
             <ul>
-                <c:forEach begin="0" end="7" items="${categorys}" var="current">
+                <c:forEach begin="0" end="7" items="${sessionScope.categorys}" var="current">
                     <li><a href="products.html"><i class="icon-chevron-right"></i><c:out value="${current.name}" /> (30)</a></li>
                     </c:forEach>
             </ul>

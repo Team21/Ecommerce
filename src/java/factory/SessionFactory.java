@@ -6,6 +6,7 @@
 package factory;
 
 import static factory.SessionFactory.PRODUCT;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import pojo.Product;
@@ -52,6 +53,7 @@ public class SessionFactory {
             session.setAttribute("product", o);
         } else if (type == PRODUCT_ARRAY_LIST) {
             session.setAttribute("productArrayList", o);
+            session.setAttribute("numOfProducts", ((ArrayList<Product>)o).size());
         }
     }
 }
