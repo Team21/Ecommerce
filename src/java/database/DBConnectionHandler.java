@@ -20,7 +20,7 @@ public class DBConnectionHandler {
      */
     private static String conParam = "jdbc:mysql://127.0.0.1:3306/servletsdb",
             user = "root",
-            pass = "root";
+            pass = "null";
 
     private static Connection con;
 
@@ -36,8 +36,8 @@ public class DBConnectionHandler {
             config.setJdbcUrl(conParam);
             config.setUsername(user);
             config.setPassword(pass);
-            config.setMinConnectionsPerPartition(5);
-            config.setMaxConnectionsPerPartition(10);
+            config.setMinConnectionsPerPartition(10);
+            config.setMaxConnectionsPerPartition(100);
             config.setPartitionCount(1);
             // setup the connection pool
             connectionPool = new BoneCP(config);

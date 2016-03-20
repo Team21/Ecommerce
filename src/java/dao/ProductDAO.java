@@ -57,8 +57,19 @@ public class ProductDAO implements DAOInter {
     }
 
     @Override
-    public boolean deleteObject(Object admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean deleteObject(Object obj) {
+        try {
+            Product p = (Product) obj;
+            connection = MysqlFactory.getConnection();
+            sql = "DELETE FROM product WHERE id=?";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, p.getId());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
     }
 
     @Override
@@ -142,8 +153,24 @@ public class ProductDAO implements DAOInter {
     }
 
     @Override
-    public boolean updateObject(Object admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateObject(Object obj) {
+        try {
+            Product p = (Product) obj;
+            connection = MysqlFactory.getConnection();
+            sql = "UPDATE product set name=?, quantity=?, price=?, category_id=?, description=? WHERE id=?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, p.getName());
+            ps.setInt(2, p.getPrice());
+            ps.setInt(3, p.getQuantity());
+            ps.setInt(4, p.getCategoryId());
+            ps.setString(5, p.getDescription());
+            ps.setInt(6, p.getId());
+            return (ps.executeUpdate() > 0);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override

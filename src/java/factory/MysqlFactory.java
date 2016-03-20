@@ -26,7 +26,7 @@ public class MysqlFactory extends DAOFactory {
     public static Connection getConnection() throws SQLException {
         return DBConnectionHandler.getInstance().getConnection();
     }
-
+    
     public AdminDAO getAdmin() {
         return new AdminDAO();
     }

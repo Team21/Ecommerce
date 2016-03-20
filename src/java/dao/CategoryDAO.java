@@ -19,8 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.RowSet;
 import pojo.Category;
-import pojo.Permission;
-import pojo.Product;
 
 /**
  *
@@ -28,11 +26,11 @@ import pojo.Product;
  */
 public class CategoryDAO implements DAOInter {
 
-    Statement stmt;
-    ResultSet resultSet;
-    Connection connection;
-    String sql;
-    PreparedStatement ps;
+    Statement stmt = null;
+    ResultSet resultSet = null;
+    Connection connection = null;
+    String sql = null;
+    PreparedStatement ps = null;
 
     @Override
     public int insertObject(Object obj) {
@@ -57,13 +55,39 @@ public class CategoryDAO implements DAOInter {
             return rows = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(PermissionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return rows;
     }
 
     @Override
     public boolean deleteObject(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Category c = (Category) obj;
+        try {
+            connection = MysqlFactory.getConnection();
+
+            sql = "DELETE FROM category WHERE Id=?";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, c.getId());
+
+            return (ps.executeUpdate() > 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(PermissionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
     }
 
     @Override
@@ -71,10 +95,11 @@ public class CategoryDAO implements DAOInter {
         Category c = (Category) obj;
         sql = "SELECT * FROM category WHERE name = ?";
         try {
+            //get the connection
             connection = MysqlFactory.getConnection();
-
+            //prapared statement
             ps = connection.prepareStatement(sql);
-            ps.setString(1, c.getName());
+            ps.setString(1, c.getName());//name
             resultSet = ps.executeQuery();
             if (!resultSet.isBeforeFirst()) {
                 System.out.println("Permission Not Exist");
@@ -88,13 +113,37 @@ public class CategoryDAO implements DAOInter {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return c;
     }
 
     @Override
     public boolean updateObject(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Category c = (Category) obj;
+            connection = MysqlFactory.getConnection();//get the connection
+            sql = "UPDATE category SET name=? WHERE id=?";//update stmt
+            ps = connection.prepareStatement(sql);//prapared statement
+            ps.setString(1, c.getName());
+            ps.setInt(2, c.getId());
+            return (ps.executeUpdate() > 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+
     }
 
     @Override
@@ -125,6 +174,14 @@ public class CategoryDAO implements DAOInter {
 
         } catch (SQLException ex) {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return categorys;
     }

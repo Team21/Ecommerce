@@ -12,27 +12,34 @@ import java.util.Date;
  * @author Hossam
  */
 public class User {
+
     private int id;
     private String email;
     private String fName;
     private String lName;
     private String userName;
     private String password;
-    private Date birthdate;     
+    private Date birthdate;
     private int paypal;
     private String address;
     private String phone;
     private byte[] image;
     private int permissionId;
     private int activated;
-    
+
     public User() {
     }
 
+    public User(int id, String userEmail, String userPassword) {
+        setId(id);
+        setEmail(userEmail);
+        setPassword(userPassword);
+    }
+
     public User(String userEmail, String userPassword) {
-        this.email=userEmail;
-        this.password=userPassword;
-       
+        this.email = userEmail;
+        this.password = userPassword;
+
     }
 
     public User(User newUser, String userPassword) {
@@ -143,5 +150,4 @@ public class User {
         this.image = image;
     }
 
-  
 }

@@ -19,6 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.logging.Level;
@@ -38,7 +39,7 @@ public class UserDAO implements DAOInter {
     Connection connection;
     String sql;
     PreparedStatement ps;
-    
+
     @Override
     public int insertObject(Object obj) {
         User u = (User) obj;
@@ -87,7 +88,7 @@ public class UserDAO implements DAOInter {
                 return null;
             } else {
                 resultSet.next();
-                if(userObj.getPassword().equals(resultSet.getString("password"))) {
+                if (userObj.getPassword().equals(resultSet.getString("password"))) {
                     User u = new User();
                     u.setId(resultSet.getInt("id"));
                     u.setfName(resultSet.getString("fname"));
@@ -109,7 +110,7 @@ public class UserDAO implements DAOInter {
                     }
                     return u;
                 }
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,7 +130,23 @@ public class UserDAO implements DAOInter {
 
     @Override
     public Collection selectObjectsTO(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            ArrayList<User> users = new ArrayList<>();
+            connection = MysqlFactory.getConnection();
+            sql = "SELECT * FROM user";
+            ps = connection.prepareStatement(sql);
+            ResultSet result = ps.executeQuery();
+            while (result.next()) {
+
+                users.add(new User(result.getInt("id"), result.getString("password"),result.getString("email")));
+            }
+            return users;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 
 }

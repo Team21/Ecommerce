@@ -5,17 +5,23 @@
  */
 package pojo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Hossam
  */
-public class Category {
+public class Category implements  Serializable{
     
     private int id;
     private String name;
     private byte[] image;
     
     public Category() {
+    }
+    public Category(int id, String name) {
+        setId(id);
+        setName(name);
     }
     
     public Category(String name) {

@@ -10,13 +10,48 @@ package pojo;
  * @author Hossam
  */
 public class Product {
-    private int  id;
+
+    private int id;
     private String name;
-    private int  quantity;
+    private int quantity;
     private byte[] image;
-    private int  price;
-    private int  categoryId;
+    private int price;
+    private int categoryId;
     private String description;
+
+    public Product() {
+
+    }
+
+    public Product(int id) {
+        setId(id);
+    }
+
+    public Product(int id, int catId, String name, int price, int quantity, String description) {
+        setId(id);
+        setCategoryId(catId);
+        setName(name);
+        setPrice(price);
+        setQuantity(quantity);
+        setDescription(description);
+
+    }
+
+    public Product(int catId, String name, int price, int quantity, String description) {
+        setCategoryId(catId);
+        setName(name);
+        setPrice(price);
+        setQuantity(quantity);
+        setDescription(description);
+
+    }
+
+    public Product(int catId, String name, int price, int quantity) {
+        setCategoryId(catId);
+        setName(name);
+        setPrice(price);
+        setQuantity(quantity);
+    }
 
     public int getId() {
         return id;

@@ -5,7 +5,7 @@
 --%>
 
 <div class="container">
-    <div class="navbar navbar-fixed-bottom jumbotron row">
+    <div class="navbar navbar-fixed-bottom jumbtron row">
         <div class="col-lg-4">
             <h4>Site Map</h4>
             <div class="list-group success">

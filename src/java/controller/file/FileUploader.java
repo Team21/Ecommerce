@@ -62,6 +62,8 @@ public class FileUploader extends HttpServlet {
 
                     String fileName = item.getFieldName();
                     String value = item.getString();
+                    System.out.println(fileName);
+                    System.out.println(value);
 
                 } else {
                     if (!item.isFormField()) {
