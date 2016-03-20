@@ -35,6 +35,14 @@
         <servlet-name>Category</servlet-name>
         <url-pattern>/adm/category</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DisplyProductDetails</servlet-name>
+        <servlet-class>controller.DisplyProductDetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplyProductDetails</servlet-name>
+        <url-pattern>/DisplyProductDetails</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             100

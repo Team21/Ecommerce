@@ -11,6 +11,7 @@ import factory.SessionFactory;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import pojo.Category;
+import pojo.Product;
 import pojo.User;
 
 /**
@@ -83,6 +86,8 @@ public class SignUpServletController extends HttpServlet {
             System.out.println("user id = " + u.getId());
             SessionFactory.setSession(request, SessionFactory.USER, u);
 
+            HttpSession session = request.getSession(true);
+            putObjectsonSession(request,session);
             RequestDispatcher rd = request.getRequestDispatcher("displaylist.jsp");
             rd.forward(request, response);
         }
@@ -92,5 +97,16 @@ public class SignUpServletController extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("indexHome.jsp");
             rd.forward(request, response);
         }
+    }
+    
+    private void putObjectsonSession(HttpServletRequest request,HttpSession session) {
+        // to get all product 
+        MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
+        ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());
+
+        ArrayList<Category> categorys = (ArrayList<Category>) mysqlFactory.getCategory().selectObjectsTO(new Category());
+
+        session.setAttribute("products", products);
+        session.setAttribute("categorys", categorys);
     }
 }

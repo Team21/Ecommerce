@@ -58,7 +58,7 @@ public class SignInServletController extends HttpServlet {
                 response.addCookie(cookiePassword);
                 System.out.println("cookie : ");
             }
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
             putObjectsonSession(request,session);
             rd.forward(request, response);
         } else {
@@ -68,7 +68,7 @@ public class SignInServletController extends HttpServlet {
         }
     }
 
-    public void putObjectsonSession(HttpServletRequest request,HttpSession session) {
+    private void putObjectsonSession(HttpServletRequest request,HttpSession session) {
         // to get all product 
         MysqlFactory mysqlFactory = (MysqlFactory) DAOFactory.getDAOFactory();
         ArrayList<Product> products = (ArrayList<Product>) mysqlFactory.getProduct().selectObjectsTO(new Product());

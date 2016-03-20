@@ -37,7 +37,7 @@
                                 <span  class="btn btn-mini" style="font-weight:bold;  font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif; color:#C00;" >Your Credit : </span>
                             </a>
                             <span class="btn btn-mini"><b style="color: #00cc00; ">$</b> ${sessionScope.user.getPaypal()} </span>
-                            <a href="product_summary.html">
+                            <a href="listOrderedProduct.jsp">
                                 <span class="btn btn-mini btn-primary">
                                     <i class="icon-shopping-cart icon-white"></i>
                                     <b style="color:#F93" id="NumberOfProductsInCart" name="NumberOfProductsInCart" value="NumberOfProductsInCart" >
@@ -75,7 +75,7 @@
                 <!--************************* right Bar *************************-->   <!-- Offers + Login Button-->
                 <ul id="topMenu" class="nav pull-right">
                     <li class="">
-                        <a  href="user.html" data-toggle="tooltip" data-placement="bottom"  title="My Account">
+                        <a  href="profilePage.jsp" data-toggle="tooltip" data-placement="bottom"  title="My Account">
                             <img src="HomeImages/contact-icon.png" width="56" height="48" alt="MyAccount"/>
                         </a>
                     </li>
@@ -89,13 +89,13 @@
                     <c:choose>
                         <c:when test="${user==null}">
                             <li class="">
-                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0">
+                                <a href="indexHome.jsp" role="button" data-toggle="modal" style="padding-right:0">
                                     <span class="btn btn-large btn-success btn-danger">Login</span>
                                 </a>
                             </li>
                             <!--Register div-->
                             <li class="">
-                                <a href="register.html" role="button" style="padding-right:0">
+                                <a href="indexHome.jsp" role="button" style="padding-right:0">
                                     <span class="btn btn-large btn-success">Register</span>
                                 </a>
                             </li>

@@ -32,7 +32,8 @@
         <%
 //            Cookie[] cookies = request.getCookies();
 //            if (cookies != null) {
-//                response.sendRedirect("");
+//                RequestDispatcher rd = request.getRequestDispatcher("displaylist.jsp");
+//                rd.forward(request, response);
 //            }
         %>
 
@@ -69,7 +70,6 @@
                                     <input name="RememberMe"  type="checkbox"/>Remember me
                                 </label>
                             </div>
-                           
                             <div class="control-group">
                                 <button type="submit" id="btnLogin" class="btn btn-large " style="font-weight: bolder; font-size: x-large; font-family: cursive;  background: #FFF; color: #008ab8;">Sign in</button>
                                 <!--                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>-->
@@ -144,7 +144,7 @@
                                 <div class="control-group">
                                     <label class="control-label text-info" style="font-weight: bold; font-size: large;" for="input_email">Email <sup style="color: tomato;">*</sup></label>
                                     <div class="controls">
-                                        <input type="text" class="span6" id="input_email" placeholder="Email" required="true" name="inputEmail">
+                                        <input type="text" class="span6" id="input_email" placeholder="Email" required="true" name="inputEmail" onblur="chechEmail()">
                                         <b id="emailError" style="color: tomato;">${sessionScope.invalidEmail}</b>
                                     </div>
                                 </div>	  

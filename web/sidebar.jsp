@@ -15,7 +15,7 @@
 
 <div id="sidebar" class="span3">
     <c:if test="${user!=null}">
-        <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="themes/images/ico-cart.png" alt="cart">
+        <div class="well well-small"><a id="myCart" href="listOrderedProduct.jsp"><img src="themes/images/ico-cart.png" alt="cart">
                 <c:choose>
                     <c:when test="${sessionScope.productArrayList!=null}">
                         

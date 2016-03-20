@@ -50,14 +50,26 @@
         <style type="text/css" id="enject"></style>
     </head>
     <body background="HomeImages/cloud-hd-backgrounds.jpg">
-        <%
-            Set<Product> products = SessionFactory.getSession(request, SessionFactory.PRODUCT_ARRAY_LIST);
-            if (products == null) {
-                products = new HashSet<>();
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script  type = "text/javascript" language = "javascript">
+            var quantity = 0;
+            function incrementQuantity() {
+                var value = $("#appendedInputButtons").val();
+                quantity = ++value;
+                $("#appendedInputButtons").val(quantity);
+
             }
-            pageContext.setAttribute("listOrderedProducts", products);
-            
-        %>
+
+            function decrementQuantity() {
+                var value = $("#appendedInputButtons").val();
+                if (value > 0) {
+                    quantity = --value;
+                    $("#appendedInputButtons").val(quantity);
+//                $('#txt_name').val();
+                }
+            }
+
+        </script>
         <jsp:include page="header.jsp" flush="" />
         <!-- Main Bocy ================================================== -->
         <div id="mainBody" style="margin-top: -2px;">
@@ -75,17 +87,23 @@
                                 <th>Product</th>
                                 <th>Description</th>
                                 <th>Quantity/Update</th>
+                                <th>In Stoke</th>
                                 <th>Price</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach begin="0" end="7" items="${listOrderedProducts}" var="current">
+                            <c:forEach begin="0" end="7" items="${sessionScope.productArrayList}" var="current">
                                 <tr>
                                     <td> <img width="60" src="themes/images/products/4.jpg" alt=""/></td>
                                     <td><c:out value="${current.name}" /><br/><c:out value="${current.description}" />  </td>
+                                    <td><c:out value="${current.quantity}" /> </td>
                                     <td>
-                                        <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button></div>
+                                        <div class="input-append">
+                                            <input class="span1" value="1" style="max-width:34px" placeholder="1" name="appendedInputButtons" id="appendedInputButtons" size="16" type="text">
+                                            <button class="btn" type="button" onclick="decrementQuantity()"><i class="icon-minus"></i></button>
+                                            <button class="btn" type="button" onclick="incrementQuantity()"><i class="icon-plus"></i></button>
+                                            <button class="btn btn-danger" type="button" onclick=""><i class="icon-remove icon-white"></i></button></div>
                                     </td>
                                     <td>$<c:out value="${current.price}" /></td>
                                     <td>$110.00(price*#product)</td>
