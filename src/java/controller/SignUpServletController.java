@@ -45,7 +45,7 @@ public class SignUpServletController extends HttpServlet {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "root";
+    static final String PASS = "null";
     Connection myConnection = null;
     Statement myStatment = null;
     PreparedStatement insertStatement = null, insertStatement2 = null;

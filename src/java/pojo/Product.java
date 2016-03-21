@@ -53,6 +53,13 @@ public class Product {
         setQuantity(quantity);
     }
 
+    public Product(int quanity, String desc, String name, int price) {
+        setQuantity(quantity);
+        setDescription(desc);
+        setName(name);
+        setPrice(price);
+    }
+
     public int getId() {
         return id;
     }

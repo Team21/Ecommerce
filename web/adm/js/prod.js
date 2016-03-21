@@ -50,8 +50,8 @@ function enableBtns() {
 
 function addProduct() {
     var data = new FormData();
-//    data.append("img", $('#prodImg')[0]);
     data.append("op", "add");
+    data.append("img", document.getElementById("prodImg").files[0]);
     data.append("catId", $("#cats option:selected").val());
     data.append("quantity", $("#quantity").val());
     data.append("desc", $("#desc").val());
@@ -60,6 +60,8 @@ function addProduct() {
     jQuery.ajax({
         url: 'product',
         data: data,
+        contentType: false,
+        processData: false,
         type: 'POST',
         success: function (data) {
             notify("saved");

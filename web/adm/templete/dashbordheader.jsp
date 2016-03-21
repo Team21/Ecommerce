@@ -1,15 +1,21 @@
 <h1 class="page-header">Dashboard</h1>
 <div class="row placeholders">
     <div class="col-xs-6 col-sm-4 placeholder">
-        <img src="img/category.png" width="200" height="200" class="img-responsive " alt="Generic placeholder thumbnail" />
+        <a href="category">
+            <img src="img/category.png" width="200" height="200" class="img-responsive " alt="Generic placeholder thumbnail" />
+        </a>
         <h4>Category</h4>
     </div>
     <div class="col-xs-6 col-sm-4 placeholder">
-        <img src="img/product.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+        <a href="product">
+            <img src="img/product.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+        </a>
         <h4>Product</h4>
     </div>
     <div class="col-xs-6 col-sm-4 placeholder">
-        <img src="img/user.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+        <a href="user">
+            <img src="img/user.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+        </a>
         <h4>User</h4>
     </div>
 

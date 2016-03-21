@@ -11,13 +11,22 @@ import dao.CategoryDAO;
 import dao.ProductDAO;
 import factory.DAOFactory;
 import factory.MysqlFactory;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import pojo.Category;
 import pojo.Product;
 
@@ -25,7 +34,6 @@ import pojo.Product;
  *
  * @author Ahmad Moawad <ahmadmoawad3@gmail.com>
  */
-
 public class ProductServlet extends HttpServlet {
 
     private MysqlFactory factory;
@@ -75,35 +83,48 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("trace->post product");
-        System.out.println(request.getParameter("op"));
-        String op = request.getParameter("op");
 
-        if (op.equalsIgnoreCase("add")) {
-            addProduct(request, response);
-        } else if (op.equalsIgnoreCase("edit")) {
-            editProduct(request, response);
-        } else if (op.equalsIgnoreCase("update")) {
-            updateProduct(request, response);
-        } else if (op.equalsIgnoreCase("delete")) {
-            deleteProduct(request, response);
+        try {
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();//manage disk factory
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);//put it into servletfileuploader
+            List<FileItem> items = servletFileUpload.parseRequest(request);//parse request
+            Iterator<FileItem> iterator = items.iterator();//iterate on items
+
+            if (iterator.hasNext()) {
+                FileItem item = iterator.next();
+                String fileName = item.getString();
+
+                if (fileName.equals("add")) {
+                    addProduct(request, response, iterator);
+                } else if (fileName.equals("edit")) {
+
+                    updateProduct(request, response);
+                } else if (fileName.equals("delete")) {
+
+                    deleteProduct(request, response);
+                }
+            }
+        } catch (FileUploadException ex) {
+            Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void addProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ProductDAO productDAO = factory.getProduct();
-        int catId = Integer.parseInt(request.getParameter("catId"));
-        String name = request.getParameter("name");
-        String desc = request.getParameter("desc");
-        int price = Integer.parseInt(request.getParameter("price"));
         FileUploader.fileUploader(request, response);
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        Product p = new Product(catId, name, price, quantity, desc);
-        if (productDAO.insertObject(p) > 0) {
-            response.getWriter().write("success");
-        } else {
-            response.getWriter().write("failed");
-        }
+//
+//        ProductDAO productDAO = factory.getProduct();
+//        int catId = Integer.parseInt(request.getParameter("catId"));
+//        String name = request.getParameter("name");
+//        String desc = request.getParameter("desc");
+//        int price = Integer.parseInt(request.getParameter("price"));
+//        FileUploader.fileUploader(request, response);
+//        int quantity = Integer.parseInt(request.getParameter("quantity"));
+//        Product p = new Product(catId, name, price, quantity, desc);
+//        if (productDAO.insertObject(p) > 0) {
+//            response.getWriter().write("success");
+//        } else {
+//            response.getWriter().write("failed");
+//        }
 
     }
 
@@ -145,6 +166,31 @@ public class ProductServlet extends HttpServlet {
 
         }
 
+    }
+
+    private void addProduct(HttpServletRequest req, HttpServletResponse resp, Iterator<FileItem> iterator) {
+        try {
+            FileItem item = iterator.next();
+            item.write(new File(req.getServletContext().getRealPath("/") + "/WEB-INF/img/prod/" + item.getName()));
+            int catId = Integer.parseInt(iterator.next().getString());
+            int quanity = Integer.parseInt(iterator.next().getString());
+            String desc = iterator.next().getString();
+            String name = iterator.next().getString();
+            int price = Integer.parseInt(iterator.next().getString());
+            Product p = new Product(catId, name, price, quanity, desc);
+            factory.getProduct().insertObject(p);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response, Iterator<FileItem> iterator) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response, Iterator<FileItem> iterator) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

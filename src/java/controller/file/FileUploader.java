@@ -2,6 +2,7 @@ package controller.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.util.Streams;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -52,12 +54,14 @@ public class FileUploader extends HttpServlet {
 
     public static void fileUploader(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
-            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
-            List<FileItem> items = servletFileUpload.parseRequest(req);
-            Iterator<FileItem> iterator = items.iterator();
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();//manage disk factory
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);//put it into servletfileuploader
+            List<FileItem> items = servletFileUpload.parseRequest(req);//parse request
+            Iterator<FileItem> iterator = items.iterator();//iterate on items
+            System.out.println("trace-> file upload");
             while (iterator.hasNext()) {
                 FileItem item = iterator.next();
+                System.out.println(item);
                 if (item.isFormField()) {
 
                     String fileName = item.getFieldName();
@@ -67,8 +71,11 @@ public class FileUploader extends HttpServlet {
 
                 } else {
                     if (!item.isFormField()) {
-                        item.write(new File("/tmp/" + item.getName()));
+                        System.out.println(new File(req.getServletContext().getRealPath("/")));
+                        item.write(new File(req.getServletContext().getRealPath("/")+"/WEB-INF/img/prod/"+ item.getName()));
+
                     }
+
                 }
 
             }
